@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contacts</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.0/css/all.css"/>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+</head>
+<body>
+
+<div class="container-fluid app">
+  <div class="container">
+    <h1 class="display-4 d-flex justify-content-center text-muted font-weight-bold">Contactos</h1>
+    <hr class="border"/>
+
+    <div class="col-md-12 col-lg-8 col-xl-8 offset-lg-2 offset-xl-2 row-eq-height">
+      <form class="shadow-lg p-5 d-none add-contact-form">
+
+        <h6 id="validate-form" class="form-text text-danger mb-4 font-weight-bold d-none">
+          Todos los campos son requeridos, por favor complete el formulario.
+          <hr/>
+        </h6>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="first_name" class="font-weight-bold">Nombres</label>
+            <input type="email" class="form-control" id="first_name" placeholder="Nombres">
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="last_name" class="font-weight-bold">Apellidos</label>
+            <input type="text" class="form-control" id="last_name" placeholder="Apellidos">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="font-weight-bold">Correo electr&oacute;nico</label>
+          <input type="email" class="form-control" id="email" placeholder="Correo electrónico">
+        </div>
+
+        <div class="form-group">
+          <label for="address" class="font-weight-bold">Direcci&oacute;n</label>
+          <input type="text" class="form-control" id="address" placeholder="León, Telica">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-8">
+            <label for="city" class="font-weight-bold">Ciudad</label>
+            <input type="text" class="form-control" id="city" placeholder="León">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="phone" class="font-weight-bold">N# de Tel&eacute;fono</label>
+            <input type="tel" class="form-control" id="phone" maxlength="8" placeholder="5555-4444">
+          </div>
+        </div>
+
+      </form>
+
+      <div class="row" id="contact-list"></div>
+    </div>
+  </div>
+
+  <a class="btn btn-danger cancel-contact d-none" id="cancel-contact" title="Cancelar">
+    <i class="fas fa-times fa-lg"></i>
+  </a>
+
+  <button class="btn btn-primary add-contact" id="add-contact" title="Agregar Contacto">
+    <i class="fas fa-plus fa-2x"></i>
+  </button>
+</div>
+
+<script src="../assets/js/index.js"></script>
+</body>
+</html>

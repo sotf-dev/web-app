@@ -1,0 +1,26 @@
+[
+  {
+    "first_name": "Luis",
+    "last_name": "Solorzano",
+    "phone": "55025936",
+    "email": "luisnic20@gmail.com",
+    "city": "León",
+    "address": "León, Telica Comarca el Tololar"
+  },
+  {
+    "first_name": "Jhonatan",
+    "last_name": "Espinoza",
+    "phone": "82516897",
+    "email": "espinozaortegajhonatan@gmail.com",
+    "city": "Chichigalpa",
+    "address": "Chichigalpa, Reparto Candelaria"
+  },
+  {
+    "first_name":"Uziel",
+    "last_name":"Ortega",
+    "phone":"78027441",
+    "email":"jhona_e7@outlook.com",
+    "city":"Chichigalpa",
+    "address":"Chichigalpa, Barrio La Cruz"
+  }
+]

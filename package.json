@@ -1,0 +1,39 @@
+{
+  "name": "saas",
+  "version": "1.0.0",
+  "description": "Software como un servicio",
+  "main": "index.js",
+  "scripts": {
+    "gulp": ".node_modules/.bin/gulp",
+    "prod": "gulp build",
+    "dev": "gulp dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sotf-dev/web-app.git"
+  },
+  "keywords": [
+    "services",
+    "html5",
+    "ccs3",
+    "sass",
+    "javascript"
+  ],
+  "author": "Luis Solorzano <luisnic20@gmail.com>, Jhonatan Espinoza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sotf-dev/web-app/issues"
+  },
+  "homepage": "https://github.com/sotf-dev/web-app#readme",
+  "dependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/register": "^7.0.0",
+    "bootstrap": "^4.1.3",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-sass": "^4.0.2"
+  }
+}
