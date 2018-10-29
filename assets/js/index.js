@@ -16,14 +16,48 @@
   const phone = document.getElementById('phone')
 
   // JSON Contact Array
+  const contacts_uri = 'https://raw.githubusercontent.com/sotf-dev/web-app/dev/assets/contacts.json'
   const contactDOM = []
+  let contactId
 
   /**
    * CREATE Contact *************************************************************************************
    */
   btn_add.addEventListener('click', () => {
-    if (form.classList.contains('d-none') && form.classList.contains('add-contact-form')) {
+    if (form.classList.contains('d-none') && form.classList.contains('add-contact-form') || form.classList.contains('d-none') && form.classList.contains('update-contact')) {
       showFormView()
+    }
+    else if (form.classList.contains('update-contact') ) {
+      if (validateForm()) {
+        validate_form.classList.add('d-none')
+
+        contactDOM[contactId].first_name = first_name.value
+        contactDOM[contactId].last_name = last_name.value
+        contactDOM[contactId].email = email.value
+        contactDOM[contactId].city = city.value
+        contactDOM[contactId].address = address.value
+        contactDOM[contactId].phone =phone.value
+        contact_list.innerHTML = ''
+
+        for (let i = 0; i < contactDOM.length; i++) {
+          createContact(
+            contactDOM[i].first_name,
+            contactDOM[i].last_name,
+            contactDOM[i].email,
+            contactDOM[i].city,
+            contactDOM[i].address,
+            contactDOM[i].phone,
+            i
+          )
+        }
+
+        hideFormView()
+        clearForm()
+        query_update()
+        query_delete()
+      } else {
+        validate_form.classList.remove('d-none')
+      }
     }
     else {
       if (validateForm()) {
@@ -41,11 +75,110 @@
         const position = contactDOM.length - 1
         createContact(first_name.value, last_name.value, email.value, city.value, address.value, phone.value, position)
         hideFormView()
+        query_update()
+        query_delete()
       } else {
         validate_form.classList.remove('d-none')
       }
     }
   })
+
+  /**
+   * GET Contacts *************************************************************************************
+   */
+  window.fetch(`${ contacts_uri }`, {method: 'GET', mode: 'cors'})
+    .then(response => response.json())
+    .then((json) => {
+      for (let i = 0; i < json.length; i++) {
+        arrayAddContacts(
+          json[i].first_name,
+          json[i].last_name,
+          json[i].email,
+          json[i].city,
+          json[i].address,
+          json[i].phone,
+          i
+        )
+      }
+    })
+
+  /**
+   * UPDATE Contact *************************************************************************************
+   */
+  const query_update = () => {
+    let time_update = setInterval(() => {
+      const btn_update = document.querySelectorAll('a.edit-contact')
+      if (btn_update.length) {
+        btn_update.forEach((value) => {
+          value.addEventListener('click', (e) => {
+            form.classList.remove('add-contact-form')
+            form.classList.add('update-contact')
+            contactId = e.target.id
+
+            first_name.value = contactDOM[contactId].first_name
+            last_name.value = contactDOM[contactId].last_name
+            email.value = contactDOM[contactId].email
+            city.value = contactDOM[contactId].city
+            address.value = contactDOM[contactId].address
+            phone.value = contactDOM[contactId].phone
+            showFormView()
+          })
+        })
+        clearInterval(time_update)
+      }
+    }, 1000)
+  }
+  query_update()
+
+  /**
+   * DELETE Contact *************************************************************************************
+   */
+  const query_delete = () => {
+    let time_delete = setInterval(() => {
+      const btn_delete = document.querySelectorAll('a.delete-contact')
+      if (btn_delete.length) {
+        btn_delete.forEach((value) => {
+          value.addEventListener('click', (e) => {
+            contactDOM.splice(e.target.id, 1)
+            contact_list.innerHTML = ''
+
+            for (let i = 0; i < contactDOM.length; i++) {
+              createContact(
+                contactDOM[i].first_name,
+                contactDOM[i].last_name,
+                contactDOM[i].email,
+                contactDOM[i].city,
+                contactDOM[i].address,
+                contactDOM[i].phone,
+                i
+              )
+            }
+
+            query_update()
+            query_delete()
+          })
+        })
+        clearInterval(time_delete)
+      }
+    }, 1000)
+  }
+  query_delete()
+
+  /**
+   * Array Push Contacts *************************************************************************************
+   */
+  const arrayAddContacts = (first_name, last_name, email, city, address, phone, position) => {
+    contactDOM.push({
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      city: city,
+      address: address,
+      phone: phone
+    })
+
+    createContact(first_name, last_name, email, city, address, phone, position)
+  }
 
   /**
    * Cancel Contact *************************************************************************************
